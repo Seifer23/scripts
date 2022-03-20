@@ -13,10 +13,10 @@ error=$(curl -A 'random' -s $url | grep -Eo "No results found</span>" | head -n 
 
 case $error in
 	"")
-		price=$(curl -A 'random' -s $url | grep -Eo "€[0-9]{1,2}.[0-9]{2}" | head -n 1)
+		price=$(curl -A 'random' -s $url | grep -Eo "€[0-9]{1,2}.[0-9]{2}" | head -n 1 | grep -Eo "[0-9]{1,2}.[0-9]{2}")
 		firsturl="https://store.epicgames.com"$(curl -A 'random' -s $url | grep -Eo "/en-US/p/[a-zA-Z?%-][^\"]{1,}" |head -n 1)
-		echo $name": "$price "("$firsturl")" >> temp/egsprice/listwithprice.txt
-		echo "("$lnumber"/157) "$name": "$price "("$firsturl")"
+		echo -e  $price"€ \t"$name "("$firsturl")" >> temp/egsprice/listwithprice.txt
+		echo -e "("$lnumber"/157) "$price"€ \t"$name "("$firsturl")"
 	;;
 	*)
 		echo $name": no results" >> temp/egsprice/listwithprice.txt
