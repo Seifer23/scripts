@@ -1,0 +1,17 @@
+#!/bin/sh
+
+wallpaper=$(curl -A 'random' -s 'https://www.reddit.com/r/wallpapers/.json' | grep -Eo "https://i.redd.it\/[a-zA-Z0-9?%-]{13}.[a-z]{3}" | head -n 1)
+filename=$(echo -n $wallpaper |tail -c 17 | grep -Eo "[a-zA-Z0-9?%-]{13}")".png"
+echo Downloading image $wallpaper and saving it as $filename
+wget -q $wallpaper -P ./temp/redditwp/
+xwallpaper --zoom ./temp/redditwp/$filename
+wal -i ./temp/redditwp/$filename
+
+read -p "Do you want to keep the image? [Y/N]" -n 1 -r
+echo # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    exit 1
+else
+	rm ./temp/redditwp/$filename
+fi
