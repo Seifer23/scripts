@@ -1,6 +1,6 @@
 #!/bin/sh
 
-wallpaper=$(curl -A 'random' -s 'https://www.reddit.com/r/wallpapers/.json' | grep -Eo "https://i.redd.it\/[a-zA-Z0-9?%-]{13}.[a-z]{3}" | head -n 1)
+wallpaper=$(curl -A 'random' -s 'https://www.reddit.com/r/wallpaper/.json' | grep -Eo "https://i.redd.it\/[a-zA-Z0-9?%-]{13}.[a-z]{3}" | head -n 1)
 filename=$(echo -n $wallpaper |tail -c 17 | grep -Eo "[a-zA-Z0-9?%-]{13}.[a-z]{3}")
 echo Downloading image $wallpaper and saving it as $filename
 wget -q $wallpaper -P ./temp/redditwp/
