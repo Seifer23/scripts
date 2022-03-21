@@ -3,7 +3,7 @@
  This is a compilation of scripts i used on various ocasions
  
  ### egsprice  
- This script goes through a [list](../main/temp/egsprice/list.txt) of games and scrapes epic games for it's price, displaying it as   
+ This script goes through a [list](../temp/egsprice/list.txt) of games and scrapes epic games for it's price, displaying it as   
  
 ```
 (pos/total) price€ 	(epic game's url)
